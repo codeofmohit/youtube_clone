@@ -88,6 +88,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
       - store.ts
       - hooks.ts
       - /reducers
+      - /asyncThunks
     - /src > Types.ts
 
   - Types >
@@ -111,13 +112,58 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - configue store in store.ts
 
     - export types for useDispatch and useSelector
-    - middleware > createAsyncThunk
-    - provide the app the store
+    - middleware > createAsyncThunk function as getDefaultMiddleWare
+      ` middleware: getDefaultMiddleware,`
+      - this would work no need to import createAsyncThunk function
+    - provide the app the store via provider (decide whether to do in index or in app)
+    - takes in reducer as : youtubeSlice {youtube:youtubeReducer}
 
-  - slices > youtubeSlice
+  - slices >
 
-    - initialState as per type
-    - reducer : {} // initially
-    - extrareducer : function takes in builder
+    - 1> youtubeSlice
 
-  - getHomePageVideos reducer
+      - initialState as per type
+      - reducer : {} // initially
+      - extrareducer : function takes in builder
+        - once done with asyncThunk reducers, make them work here, for fullfied and error cases, also for loading cases also can be used for showing a shimmer
+
+  - hooks.ts
+
+    - make custom hooks (type enabled ones), for using default useDispatch and useSelector via exported types from store
+
+  - asyncThunks > getHomePageVideos
+
+    - on your own
+    - basically create and asyncThnk, call youtube api via axios get items as per query and nextPageToken from here
+
+      - yt query :
+
+      ```
+        `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video
+
+        YOUTUBE_API_URL = "https://youtube.googleapis.com/youtube/v3"
+      ```
+
+    - in homepage import the createAsyncThunk reducers and callthem in useEffect via dispatching via calling the function, remember calling an asyncThunk action automatically dispatch 3 action types fullfilled, pending and rejected as promises which would be handled in extrareducers of youtubeSlice
+
+      - basically log if the data is coming
+      - note make asyncThunk call in udeEffect pass dispatch as dependecy array [best pratise]
+
+      - once get api data we can console.log it, we must parse the data, in other to make things renderable, data > parseData(data) , parseData is utility code in utils
+        - Now 2 approches, either copy utility code from the git repo of tute
+        - create your own parsing logic
+        - if approch 1 is chossen then only,
+          - utils > parseData.ts >
+            - copy code from git repo
+          - create related files > check gitHub repo
+            - for converting raw views, convertRawViewToString
+            - parsing video duration
+            - parsing timeSince
+            - parseData to make use of above 3
+      - create a index.ts in utils, paste code from gitHub
+
+    - create type of HomePageVideo in Types file
+
+      - take it from git or create your own as per the data coming, check the type of data coming from api based on which you will decide whether to copy or build your own types
+
+    - Now in getHomeVideos once data is there send it to praseData and get parseData, return that, when case is fullfilled, which then in extrareducer will be handled an will be stored in state
