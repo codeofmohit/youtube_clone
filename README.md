@@ -40,6 +40,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - Create 3 pages componenets - Home, Search, Watch > Route these 3 page components
     - watch route will take in id > path - /watch/:id
     - handle random routes | error page
+  - make the routing work in such a way that slidebar, navbar remains there, and then mainContent will get changed based on how you interact with app, plan here, make components accordingly
 
 - 5> Navbar Component ❌
 
@@ -167,3 +168,36 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
       - take it from git or create your own as per the data coming, check the type of data coming from api based on which you will decide whether to copy or build your own types
 
     - Now in getHomeVideos once data is there send it to praseData and get parseData, return that, when case is fullfilled, which then in extrareducer will be handled an will be stored in state
+
+- 9> building home component ❌
+  - make Card component
+  - Home page component > after sidebar
+    - if video.length (via store) ->` <InfiniteScroll></InfiniteScroll>` from react-infinete-scroll as default component
+    - else `<Spinner>` will create [fisrt create then come back]
+    - Infine scroll will take some props,
+      - datalength = videos.length
+      - next -> a callback in whcih we dispatch our getHomeVideos reducer will value true in it
+        - true/false handling was not implemented, this boolean is for loading next page handle it now first
+      - hasMore -> a condition for keep on fetching more videos, video.length < 500
+      - loader -> spinner component
+      - height -> 650
+    - this is done, now as children infinteScroll component will have videos, so make JSX for that
+      - basically map over videos(from redux store)
+      - in each of map > render Card component
+    - Card component
+      - will take in item as prop
+        - coming data will have homePageVideo type from Types.ts
+      - style the card componenet, render the data accordingly
+      - Following are the metaData which would be rendered
+        - video thumbnail Image, channgel image (rounded), video description, channel name, view count, time since, video length overlaying video card in right bottom corner
+        - while rendering the data on UI, on image make it link to /watch/videoId set tareget blank, so that can be opeable
+        - for the description use something called, line-clamp-2 tailwind class, when lines are more then 3 it clump them up (very useful)
+          - package name : @tailwindcss/line-clamp , install it
+          - in tailwind config, require line-clamp
+          - restart local server to make things work
+  - create Spinner component
+    - animate-spin is a tailwind class
+  - create a reducer in youtubeSlice, clearVideos, so whenever we are chaing page or by either clicking on sidebar menu or going to search result page when we make a video search.
+    - state.videos = []
+    - state.nextPageToken = null
+    - wherever at what interaction you need to clear the stuff, make use of clearVideos, dispatch clearVideos action in the return method of useEffect of working component so when taken out / unmounted from page, it gets called for clean up
