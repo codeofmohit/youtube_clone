@@ -170,6 +170,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
     - Now in getHomeVideos once data is there send it to praseData and get parseData, return that, when case is fullfilled, which then in extrareducer will be handled an will be stored in state
 
 - 9> building home component ❌
+
   - make Card component
   - Home page component > after sidebar
     - if video.length (via store) ->` <InfiniteScroll></InfiniteScroll>` from react-infinete-scroll as default component
@@ -201,3 +202,10 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
     - state.videos = []
     - state.nextPageToken = null
     - wherever at what interaction you need to clear the stuff, make use of clearVideos, dispatch clearVideos action in the return method of useEffect of working component so when taken out / unmounted from page, it gets called for clean up
+
+- 10> building search component ❌
+  - struture search page using outlet of rrd
+  - create one more async thunk reducer, which would be getSearchTermVideos
+  - onSearch term submit, on Submit, take user to /search page via useNavigate of rrd with search term
+  - then on search page call and fetch getSearchTermVideos and display to UI
+  - same videoCard component can be reused here
