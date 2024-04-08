@@ -204,8 +204,15 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
     - wherever at what interaction you need to clear the stuff, make use of clearVideos, dispatch clearVideos action in the return method of useEffect of working component so when taken out / unmounted from page, it gets called for clean up
 
 - 10> building search component ❌
+
   - struture search page using outlet of rrd
   - create one more async thunk reducer, which would be getSearchTermVideos
   - onSearch term submit, on Submit, take user to /search page via useNavigate of rrd with search term
   - then on search page call and fetch getSearchTermVideos and display to UI
   - same videoCard component can be reused here
+
+- 11> building watch page ❌
+  - useParam from rrd, extract the id
+  - create one more thunk reducer getVideoById, make the api call and get the video
+  - create another thunk reducer getRecommended videos, make the api call and get recommended videos
+  - create another thunk reducer getCommentsForVideos, make the api call if possible and get the comments
