@@ -216,3 +216,19 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - create one more thunk reducer getVideoById, make the api call and get the video
   - create another thunk reducer getRecommended videos, make the api call and get recommended videos
   - create another thunk reducer getCommentsForVideos, make the api call if possible and get the comments
+
+## Dev Flow [design doc - rough]
+
+- initial LLD plan done for UI ✅
+
+- initial routing set up done ✅
+
+  - /home : homepage display + search result display
+  - /watch : watch page result currently playing videos + recommended videos + comments
+
+- dark/light theme planning done ✅
+
+  - toggle dark class in parent html component, on click of dark/light mode button, use redux/context.
+  - keep on using dark mode classes in tailwind for all the styling's along
+
+- building navbar UI ❌
