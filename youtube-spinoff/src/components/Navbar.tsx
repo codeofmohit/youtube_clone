@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navBar bg-white dark:bg-[#0f0f0f] p-4 dark:text-white flex">
+    <div className="navBar bg-white dark:bg-[#0f0f0f] p-4 flex">
       <div className="navLeft w-1/5 flex items-center">
         <div className="hamBurgurMenu mr-4">
           <RxHamburgerMenu size={"1.5em"} />
