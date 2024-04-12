@@ -231,4 +231,6 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - toggle dark class in parent html component, on click of dark/light mode button, use redux/context.
   - keep on using dark mode classes in tailwind for all the styling's along
 
-- building navbar UI ❌
+- building navbar UI ✅
+
+- feature - dark/light theme ✅
