@@ -1,8 +1,6 @@
+import Navbar from "../components/Navbar";
+
 const Home = () => {
-  return (
-    <div className="bg-white dark:bg-black">
-      <h1 className="text-slate-900 dark:text-white">Home</h1>
-    </div>
-  );
+  return <Navbar />;
 };
 export default Home;
