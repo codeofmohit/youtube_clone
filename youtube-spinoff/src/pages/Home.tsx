@@ -1,6 +1,6 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import VideosContainer from "../components/VideosContainer";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
           <Sidebar />
         </aside>
         <div className="videosConatiner w-10/12 p-2">
-          <VideosContainer />
+          <Outlet />
         </div>
       </main>
     </div>

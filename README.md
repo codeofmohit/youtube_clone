@@ -235,4 +235,6 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - feature - dark/light theme ✅
 
-- building sidebar UI
+- building sidebar UI ✅
+
+- multi-level routing setup for displaying olLoadVideos, searchedVideos, categoryVideos in one view is done via outlet of react-router-dom ✅
