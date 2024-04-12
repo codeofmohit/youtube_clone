@@ -238,3 +238,13 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 - building sidebar UI ✅
 
 - multi-level routing setup for displaying olLoadVideos, searchedVideos, categoryVideos in one view is done via outlet of react-router-dom ✅
+
+- onLoadVideos ❌
+
+  - redux store setup ❌
+
+  - google youtube api setup ❌
+
+  - youtube slice ❌
+
+  - videoCard component from data ❌
