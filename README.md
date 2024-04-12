@@ -234,3 +234,5 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 - building navbar UI ✅
 
 - feature - dark/light theme ✅
+
+- building sidebar UI
