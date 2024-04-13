@@ -8,10 +8,10 @@ const Home = () => {
   useFetchOnLoadVideos();
   return (
     <div className="homePage">
-      <nav className="mb-2">
+      <nav className="mb-2 w-full fixed z-10">
         <Navbar />
       </nav>
-      <main className="flex">
+      <main className="flex translate-y-16">
         <aside className="w-2/12 p-2">
           <Sidebar />
         </aside>
