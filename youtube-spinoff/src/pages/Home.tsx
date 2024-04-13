@@ -1,20 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-
-import { getOnLoadVideos } from "../store/thunk reducers/getOnLoadVideos";
-import { useEffect } from "react";
-
-import { useAppDispatch } from "../store/hooks";
+import useFetchOnLoadVideos from "../utils/custom_hooks/useFetchOnLoadVideos";
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    console.log("coming in use effect calling onLoad thunk function");
-    dispatch(getOnLoadVideos());
-  }, [dispatch]);
-
+  // fetching videos onLoad videos
+  useFetchOnLoadVideos();
   return (
     <div className="homePage">
       <nav className="mb-2">

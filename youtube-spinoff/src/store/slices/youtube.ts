@@ -20,6 +20,7 @@ const youtubeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getOnLoadVideos.fulfilled, (state, action) => {
+      state.loading = false;
       state.nextPageToken = action.payload?.nextPageToken;
       state.videos = action.payload?.items;
     });

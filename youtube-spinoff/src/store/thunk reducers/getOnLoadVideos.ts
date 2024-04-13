@@ -1,13 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { YOUTUBE_API } from "../../constants/youtubeConfig";
+import axios from "axios";
 
 export const getOnLoadVideos = createAsyncThunk(
   "youtube/getOnLoadVideos",
   async () => {
     try {
-      const req = await fetch(`${YOUTUBE_API}&q=music`);
-      const response = await req.json();
-      return response;
+      // gettign most populat videos in india
+      const response = await axios.get(`${YOUTUBE_API}`);
+      return response.data;
     } catch (error) {
       return error;
     }
