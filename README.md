@@ -241,9 +241,9 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - onLoadVideos ❌
 
-  - redux store setup ❌
+  - google youtube api setup
 
-  - google youtube api setup ❌
+  - redux store setup ❌
 
   - youtube slice ❌
 
