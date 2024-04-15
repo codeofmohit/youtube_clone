@@ -14,15 +14,20 @@ import { useAppDispatch } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
 import { getOnSearchVideos } from "../store/thunk-reducers/getOnSearchVideos";
 import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const theme = useContext(ThemeContext);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchTerm !== "") {
+      if (window.location.pathname !== "/") {
+        navigate("/");
+      }
       dispatch(addSearchTerm(searchTerm));
       // useFetchOnSearchVideos();
       dispatch(getOnSearchVideos(searchTerm));
@@ -45,12 +50,15 @@ const Navbar = () => {
           className="logo flex items-center cursor-pointer"
           onClick={() => {
             dispatch(getOnLoadVideos());
+            if (window.location.pathname !== "/") {
+              navigate("/");
+            }
           }}
         >
           <div className="FaYoutube mr-1">
             <FaYoutube size={"1.75em"} color="red" />
           </div>
-          <span className="text-xl">YouTube</span>
+          <span className="text-xl">FunTube</span>
           <sup>IN</sup>
         </div>
       </div>
