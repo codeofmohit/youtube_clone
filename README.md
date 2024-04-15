@@ -251,7 +251,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 # YET TO DO [Before wrapping the project]
 
-- make search functionlity work, pupulate video in same UI ❌
+- make search functionlity work, pupulate video in same UI ✅
 
 - make category functionlity work, pupulate video in same UI ❌
 
