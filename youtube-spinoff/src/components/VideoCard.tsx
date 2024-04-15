@@ -7,7 +7,9 @@ const VideoCard = ({ data }: { data: YoutubeVideo }) => {
     <div
       className="videoCard m-2 shadow-lg border rounded  w-2/12 cursor-pointer"
       onClick={() => {
-        navigate(`/watch/${data?.id}`);
+        const navigateTo =
+          typeof data.id == "string" ? data?.id : data?.id?.videoId;
+        navigate(`/watch/${navigateTo}`);
       }}
     >
       <div className="imageContainer">

@@ -30,14 +30,14 @@ interface YoutubeVideoSnippet {
 export interface YoutubeVideo {
   kind: string; // "youtube#video"
   etag: string;
-  id: string;
+  id: any;
   snippet: YoutubeVideoSnippet;
 }
 
 export interface initialStateType {
-  nextPageToken: string;
+  nextPageToken: string | null;
   videos: YoutubeVideo[];
-  searchTerm: string;
+  searchTerm: string | null;
   loading: boolean;
-  error: string;
+  error: string | null;
 }

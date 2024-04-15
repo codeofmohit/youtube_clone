@@ -2,7 +2,7 @@ import VideoCard from "./VideoCard";
 import { useAppSelector } from "../store/hooks";
 import Spinner from "./Spinner";
 
-const OnLoadVideos = () => {
+const VideosConatiner = () => {
   const videos = useAppSelector((state) => state.youtube?.videos);
   const isLoading = useAppSelector((state) => state.youtube?.loading);
 
@@ -17,9 +17,10 @@ const OnLoadVideos = () => {
   return (
     <div className="OnLoadVideos-container flex flex-wrap justify-evenly">
       {videos.map((item) => {
-        return <VideoCard data={item} key={item?.id} />;
+        const id = typeof item.id == "string" ? item?.id : item?.id?.videoId;
+        return <VideoCard data={item} key={id} />;
       })}
     </div>
   );
 };
-export default OnLoadVideos;
+export default VideosConatiner;
