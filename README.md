@@ -253,20 +253,21 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - make search functionlity work, pupulate video in same UI ✅
 
-- make category functionlity work, pupulate video in same UI ❌
+- make category functionlity work, pupulate video in same UI ✅
 
-- make watch page, with iframe and playing options ❌
+- make watch page, with iframe and playing options
 
 - quickly skim over, akshay saini videos and implement additional functionality ❌
 
 - on watch page, load suggested videos and comments [if possible, don't waste more time on this] ❌
 
-# Once all done then, fix these bugs
+# Once all done then, fix these bugs [less priority but good for optimizin app UX]
 
 - additional features [for later once rest everything is done] ? ❌
   - 1> fix UI ?
     - 1> like youtube make sidebar sticky/fixed, only main content video should be scrollable ?
     - 2> bottom white bg on dark mode fix it ?
+    - 3> in search bar either clear search once entered, or give option ot manual clear
   - 2> infinite scroll ?
     - make use of react-infinite-scroll component and implement infinite scroll scroll feature ?
   - 3> add footer ?
