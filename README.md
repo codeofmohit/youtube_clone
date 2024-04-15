@@ -1,6 +1,6 @@
-# youtube_clone
+# funtube_clone
 
-Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
+funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 ## Design Documentation (for dev only)
 
@@ -49,7 +49,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
     - Note : keep in mind that icons must be for both dark and white theme based on that only import icons
     - import { AiOutlineSearch,AiOutlineClose } from "react-icons/ai";
     - import { TiMicrophone } from "react-icons/ti";
-    - import { BsYoutube, BsCameraVideo, BsBell } from "react-icons/bs";
+    - import { Bsfuntube, BsCameraVideo, BsBell } from "react-icons/bs";
     - import { GiHamburgerMenu } from "react-icons/gi";
     - import { IoAppsSharp } from "react-icons/io5";
   - Home > navbar + sidebar
@@ -72,11 +72,11 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 - 6> Sidebar ❌
 
   - Home > navbar + sidebar
-  - import necessry icons from react-icons make it look like youTube
+  - import necessry icons from react-icons make it look like funtube
 
-- 7> Youtube data api ❌
+- 7> funtube data api ❌
 
-  - console.cloud.google.com > youtube clone
+  - console.cloud.google.com > funtube clone
   - enable api and services
   - yt data api v3 > enable > create credentials > public data
   - api key
@@ -117,11 +117,11 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
       ` middleware: getDefaultMiddleware,`
       - this would work no need to import createAsyncThunk function
     - provide the app the store via provider (decide whether to do in index or in app)
-    - takes in reducer as : youtubeSlice {youtube:youtubeReducer}
+    - takes in reducer as : funtubeSlice {funtube:funtubeReducer}
 
   - slices >
 
-    - 1> youtubeSlice
+    - 1> funtubeSlice
 
       - initialState as per type
       - reducer : {} // initially
@@ -135,17 +135,17 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - asyncThunks > getHomePageVideos
 
     - on your own
-    - basically create and asyncThnk, call youtube api via axios get items as per query and nextPageToken from here
+    - basically create and asyncThnk, call funtube api via axios get items as per query and nextPageToken from here
 
       - yt query :
 
       ```
-        `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video
+        `${funtube_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video
 
-        YOUTUBE_API_URL = "https://youtube.googleapis.com/youtube/v3"
+        funtube_API_URL = "https://funtube.googleapis.com/funtube/v3"
       ```
 
-    - in homepage import the createAsyncThunk reducers and callthem in useEffect via dispatching via calling the function, remember calling an asyncThunk action automatically dispatch 3 action types fullfilled, pending and rejected as promises which would be handled in extrareducers of youtubeSlice
+    - in homepage import the createAsyncThunk reducers and callthem in useEffect via dispatching via calling the function, remember calling an asyncThunk action automatically dispatch 3 action types fullfilled, pending and rejected as promises which would be handled in extrareducers of funtubeSlice
 
       - basically log if the data is coming
       - note make asyncThunk call in udeEffect pass dispatch as dependecy array [best pratise]
@@ -198,7 +198,7 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
           - restart local server to make things work
   - create Spinner component
     - animate-spin is a tailwind class
-  - create a reducer in youtubeSlice, clearVideos, so whenever we are chaing page or by either clicking on sidebar menu or going to search result page when we make a video search.
+  - create a reducer in funtubeSlice, clearVideos, so whenever we are chaing page or by either clicking on sidebar menu or going to search result page when we make a video search.
     - state.videos = []
     - state.nextPageToken = null
     - wherever at what interaction you need to clear the stuff, make use of clearVideos, dispatch clearVideos action in the return method of useEffect of working component so when taken out / unmounted from page, it gets called for clean up
@@ -241,11 +241,11 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - onLoadVideos as mostPopularVideos in india ✅
 
-  - google youtube api setup ✅
+  - google funtube api setup ✅
 
   - redux store setup ✅
 
-  - youtube slice ✅
+  - funtube slice ✅
 
   - videoCard component from data ✅
 
@@ -255,7 +255,11 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - make category functionlity work, pupulate video in same UI ✅
 
-- make watch page, with iframe and playing options
+- make watch page, with iframe and playing options ✅
+
+- suggested videos tab
+
+  - use channel title as a search param, and then make a search call and get list of video
 
 - quickly skim over, akshay saini videos and implement additional functionality ❌
 
@@ -265,10 +269,11 @@ Youtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - additional features [for later once rest everything is done] ? ❌
   - 1> fix UI ?
-    - 1> like youtube make sidebar sticky/fixed, only main content video should be scrollable ?
+    - 1> like funtube make sidebar sticky/fixed, only main content video should be scrollable ?
     - 2> bottom white bg on dark mode fix it ?
     - 3> in search bar either clear search once entered, or give option ot manual clear
   - 2> infinite scroll ?
     - make use of react-infinite-scroll component and implement infinite scroll scroll feature ?
   - 3> add footer ?
   - 4> add alert for sign in button ?
+  - 5> instead of youtube use funtube
