@@ -12,7 +12,8 @@ import { addSearchTerm } from "../store/slices/youtube";
 // importing useAppDiscpatch from store
 import { useAppDispatch } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
-import { getOnSearchVideos } from "../store/thunk reducers/getOnSearchVideos";
+import { getOnSearchVideos } from "../store/thunk-reducers/getOnSearchVideos";
+import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,11 +41,18 @@ const Navbar = () => {
         <div className="hamBurgurMenu mr-4">
           <RxHamburgerMenu size={"1.5em"} />
         </div>
-        <div className="FaYoutube mr-1">
-          <FaYoutube size={"1.75em"} color="red" />
+        <div
+          className="logo flex items-center cursor-pointer"
+          onClick={() => {
+            dispatch(getOnLoadVideos());
+          }}
+        >
+          <div className="FaYoutube mr-1">
+            <FaYoutube size={"1.75em"} color="red" />
+          </div>
+          <span className="text-xl">YouTube</span>
+          <sup>IN</sup>
         </div>
-        <span className="text-xl">YouTube</span>
-        <sup>IN</sup>
       </div>
       <div className="navCenter w-4/5">
         <form

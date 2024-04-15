@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { initialStateType } from "../../types/Types";
-import { getOnLoadVideos } from "../thunk reducers/getOnLoadVideos";
-import { getOnSearchVideos } from "../thunk reducers/getOnSearchVideos";
+import { getOnLoadVideos } from "../thunk-reducers/getOnLoadVideos";
+import { getOnSearchVideos } from "../thunk-reducers/getOnSearchVideos";
+import { getCategoriesVideos } from "../thunk-reducers/getCategoriesVideos";
 
 const initialState: initialStateType = {
   nextPageToken: "",
@@ -44,6 +45,19 @@ const youtubeSlice = createSlice({
       state.videos = action.payload?.items;
     });
     builder.addCase(getOnSearchVideos.rejected, (state, action) => {
+      state.loading = false;
+      state.error = "Unknown error fetching videos";
+    });
+    // handing async thunk reducer : getCategoriesVideos action types
+    builder.addCase(getCategoriesVideos.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(getCategoriesVideos.fulfilled, (state, action) => {
+      state.loading = false;
+      state.nextPageToken = action.payload?.nextPageToken;
+      state.videos = action.payload?.items;
+    });
+    builder.addCase(getCategoriesVideos.rejected, (state, action) => {
       state.loading = false;
       state.error = "Unknown error fetching videos";
     });
