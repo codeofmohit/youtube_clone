@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 // importing icons
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaYoutube } from "react-icons/fa";
@@ -7,13 +7,27 @@ import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { FaRegCircleUser } from "react-icons/fa6";
 // importing context
 import { ThemeContext } from "../theme/themeContext";
+// importing actions from youtubeSlice
+import { addSearchTerm } from "../store/slices/youtube";
+// importing useAppDiscpatch from store
+import { useAppDispatch } from "../store/hooks";
+// import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
+import { getOnSearchVideos } from "../store/thunk reducers/getOnSearchVideos";
 
 const Navbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const theme = useContext(ThemeContext);
+  const dispatch = useAppDispatch();
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("form submitted with search term!");
+    if (searchTerm !== "") {
+      dispatch(addSearchTerm(searchTerm));
+      // useFetchOnSearchVideos();
+      dispatch(getOnSearchVideos(searchTerm));
+    } else {
+      alert("Search can not be blank! please provide a search value!");
+    }
   };
 
   const switchThemeHandler = () => {
@@ -41,6 +55,10 @@ const Navbar = () => {
             type="text"
             placeholder="Search"
             className="border p-1 pl-4 w-1/2 rounded-[2rem] mr-2 dark:bg-[#212121]"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
           />
           <button type="submit" className=" -translate-x-10">
             <CiSearch />
