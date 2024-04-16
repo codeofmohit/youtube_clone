@@ -9,7 +9,7 @@ const VideoPlayer = ({ id }: { id: string | unknown }) => {
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"
       allowFullScreen
-      className="rounded pt-8"
+      className="rounded pt-6 w-8/12"
     ></iframe>
   );
 };

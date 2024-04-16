@@ -8,7 +8,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 // importing context
 import { ThemeContext } from "../theme/themeContext";
 // importing actions from youtubeSlice
-import { addSearchTerm } from "../store/slices/youtube";
+import { addSearchTerm, clearSuggestedVideos } from "../store/slices/youtube";
 // importing useAppDiscpatch from store
 import { useAppDispatch } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
@@ -49,6 +49,7 @@ const Navbar = () => {
         <div
           className="logo flex items-center cursor-pointer"
           onClick={() => {
+            dispatch(clearSuggestedVideos());
             dispatch(getOnLoadVideos());
             if (window.location.pathname !== "/") {
               navigate("/");

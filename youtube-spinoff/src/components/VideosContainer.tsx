@@ -29,7 +29,7 @@ const VideosConatiner = () => {
       {videos?.length &&
         videos.map((item) => {
           const id = typeof item.id == "string" ? item?.id : item?.id?.videoId;
-          return <VideoCard data={item} key={id} />;
+          return <VideoCard data={item} key={id} suggested={false} />;
         })}
     </div>
   );

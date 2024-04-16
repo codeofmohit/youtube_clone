@@ -4,13 +4,17 @@ import { initialStateType } from "../../types/Types";
 import { getOnLoadVideos } from "../thunk-reducers/getOnLoadVideos";
 import { getOnSearchVideos } from "../thunk-reducers/getOnSearchVideos";
 import { getCategoriesVideos } from "../thunk-reducers/getCategoriesVideos";
+import { getSuggestedVideos } from "../thunk-reducers/getSuggestedVideos";
 
 const initialState: initialStateType = {
   nextPageToken: "",
   videos: [],
+  suggestedVideos: [],
   searchTerm: null,
   loading: false,
+  loading_suggested: false,
   error: "",
+  channelName: "",
 };
 
 const youtubeSlice = createSlice({
@@ -19,6 +23,12 @@ const youtubeSlice = createSlice({
   reducers: {
     addSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
+    },
+    addChannelName: (state, action) => {
+      state.channelName = action.payload;
+    },
+    clearSuggestedVideos: (state) => {
+      state.suggestedVideos = [];
     },
   },
   extraReducers: (builder) => {
@@ -61,8 +71,21 @@ const youtubeSlice = createSlice({
       state.loading = false;
       state.error = "Unknown error fetching videos";
     });
+    // handing async thunk reducer : getSuggestedVideos action types
+    builder.addCase(getSuggestedVideos.pending, (state, action) => {
+      state.loading_suggested = true;
+    });
+    builder.addCase(getSuggestedVideos.fulfilled, (state, action) => {
+      state.loading_suggested = false;
+      state.suggestedVideos = action.payload?.items;
+    });
+    builder.addCase(getSuggestedVideos.rejected, (state, action) => {
+      state.loading_suggested = false;
+      state.error = "Unknown error fetching videos";
+    });
   },
 });
 
-export const { addSearchTerm } = youtubeSlice.actions;
+export const { addSearchTerm, addChannelName, clearSuggestedVideos } =
+  youtubeSlice.actions;
 export default youtubeSlice.reducer;

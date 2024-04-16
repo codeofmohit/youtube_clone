@@ -37,7 +37,10 @@ export interface YoutubeVideo {
 export interface initialStateType {
   nextPageToken: string | null;
   videos: YoutubeVideo[];
+  suggestedVideos: YoutubeVideo[];
   searchTerm: string | null;
   loading: boolean;
+  loading_suggested: boolean;
   error: string | null;
+  channelName: any;
 }

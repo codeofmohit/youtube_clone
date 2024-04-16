@@ -3,12 +3,14 @@ import { sideBaMenus } from "../constants/sideBarMenus";
 import { useAppDispatch } from "../store/hooks";
 import { getCategoriesVideos } from "../store/thunk-reducers/getCategoriesVideos";
 import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
+import { clearSuggestedVideos } from "../store/slices/youtube";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const loadingVideosByCategories = (category: string) => {
+    dispatch(clearSuggestedVideos());
     if (window.location.pathname !== "/") {
       navigate("/");
     }
