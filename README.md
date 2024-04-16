@@ -269,6 +269,7 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - additional features [for later once rest everything is done] ? ❌
   - 1> fix UI ?
+    - 0> Mobile responsive ?
     - 1> like funtube make sidebar sticky/fixed, only main content video should be scrollable ?
     - 2> bottom white bg on dark mode fix it ?
     - 3> in search bar either clear search once entered, or give option ot manual clear
