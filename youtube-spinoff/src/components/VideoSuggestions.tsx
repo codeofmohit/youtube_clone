@@ -1,5 +1,16 @@
 import VideoCard from "../components/VideoCard";
+import { useAppSelector } from "../store/hooks";
+import Spinner from "./Spinner";
 const VideoSuggestions = ({ suggestedVideos }: any) => {
+  const loading = useAppSelector((state) => state?.youtube?.loading_suggested);
+
+  if (loading) {
+    return (
+      <div className="loader flex justify-center items-center h-[50vh]">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <div className="videoSuggestions m-6 w-4/12">
       <h1 className="text-xl mb-2">Suggested Videos</h1>
