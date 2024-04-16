@@ -13,7 +13,7 @@ const routes = createBrowserRouter([
   },
 
   {
-    path: "/watch/:id",
+    path: "/watch/:id/:channel",
     element: <Watch />,
   },
 ]);

@@ -1,15 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import { YoutubeVideo } from "../types/Types";
+import { useAppDispatch } from "../store/hooks";
+import { addChannelName, clearSuggestedVideos } from "../store/slices/youtube";
 
-const VideoCard = ({ data }: { data: YoutubeVideo }) => {
+const VideoCard = ({
+  data,
+  suggested,
+}: {
+  data: YoutubeVideo;
+  suggested: boolean;
+}) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <div
-      className="videoCard m-2 shadow-lg border rounded  w-2/12 cursor-pointer"
+      className={`videoCard m-2 shadow-lg border rounded ${
+        !suggested ? "w-2/12" : "w-[80%] my-4"
+      }  cursor-pointer`}
       onClick={() => {
-        const navigateTo =
+        const navigateToID =
           typeof data.id == "string" ? data?.id : data?.id?.videoId;
-        navigate(`/watch/${navigateTo}`);
+        const channelName = data?.snippet?.channelTitle
+          ? data?.snippet?.channelTitle
+          : "random";
+        dispatch(addChannelName(channelName));
+        navigate(`/watch/${navigateToID}/${channelName}`);
       }}
     >
       <div className="imageContainer">
