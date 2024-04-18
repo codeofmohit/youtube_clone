@@ -257,11 +257,14 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - make watch page, with iframe and playing options ✅
 
-- suggested videos tab
+- suggested videos tab ✅
 
   - use channel title as a search param, and then make a search call and get list of video
 
 - quickly skim over, akshay saini videos and implement additional functionality ❌
+
+  - added features as per akshay saini videos :
+    -
 
 - on watch page, load suggested videos and comments [if possible, don't waste more time on this] ❌
 
