@@ -263,8 +263,17 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - quickly skim over, akshay saini videos and implement additional functionality ❌
 
-  - added features as per akshay saini videos :
-    -
+  - additional features as per akshay saini videos : ❌
+
+    - youtube autosuggestion api, on search input - [do in planned way - create smaller components] ❌
+      - adding debouncing in autosuggestion api [using redux]
+      - adding caching also, for backkeypress, storing results in cache, if available in cache that loading from there
+    - n level deep nested comments [with replies], via recursion
+
+    - live chat feature [with dummy data] - [do in planned way - create smaller components] ❌
+      - 2 ways to live data
+        - web socket [2 ways bidirection data flow in readl time (close to real time)]
+        - api polling [calling api repeatatively in each 20 seconds, to get new data]
 
 - on watch page, load suggested videos and comments [if possible, don't waste more time on this] ❌
 

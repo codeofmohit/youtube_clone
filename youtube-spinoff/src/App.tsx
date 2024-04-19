@@ -21,6 +21,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ currentTheme, toggleCurrentTheme }}>
       <Theme>
+        {/* main app logic */}
         <Provider store={store}>
           <RouterProvider router={routes} />
         </Provider>
