@@ -9,7 +9,8 @@ export const getOnLoadVideos = createAsyncThunk(
       // gettign most populat videos in india
       const response = await axios.get(`${YOUTUBE_API}`);
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error?.response?.data?.error?.message);
       return error;
     }
   }

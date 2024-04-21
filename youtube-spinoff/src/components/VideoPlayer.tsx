@@ -13,6 +13,10 @@ const VideoPlayer = ({ id }: { id: any }) => {
   );
   const commentsDetails = useAppSelector((state) => state.youtube?.comments);
 
+  const sideBarHidden = useAppSelector(
+    (state) => state?.youtube?.sideBarHidden
+  );
+
   useEffect(() => {
     //call thunk reducer to get the channelInfo
     dispatch(getChannelDetails(channelId));
@@ -24,10 +28,10 @@ const VideoPlayer = ({ id }: { id: any }) => {
   }
 
   return (
-    <div className="videoDetails w-8/12">
+    <div className="videoDetails w-8/12 px-4">
       <div className="videoPlayer pt-6 ">
         <iframe
-          width="800"
+          width={`${!sideBarHidden ? "800" : "950"}`}
           height="472"
           src={`https://www.youtube.com/embed/${id}`}
           title="FunTube video player"

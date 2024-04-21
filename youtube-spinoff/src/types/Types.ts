@@ -42,7 +42,7 @@ export interface initialStateType {
   searchTerm: string | null;
   loading: boolean;
   loading_suggested: boolean;
-  error: string | null;
+  error: any;
   channelName: any;
   channelId: any;
   channelDetails: any;
@@ -50,6 +50,7 @@ export interface initialStateType {
   loading_channelDetails: any;
   loading_comments: any;
   currentPlayingVideo: any;
+  sideBarHidden: boolean;
 }
 
 export type commentType = {

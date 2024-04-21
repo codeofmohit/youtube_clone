@@ -5,7 +5,9 @@ export const YOUTUBE_API = `https://youtube.googleapis.com/youtube/v3/videos?par
 
 export const YOUTUBE_API_SEARCH = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${api_cred}&regionCode=IN&type=video&maxResults=20`;
 
-export const YOUTUBE_API_COMMENTS = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=replies%2Csnippet&maxResults=50&key=${api_cred}&videoId=`;
+export const YOUTUBE_API_SUGGESTIONS = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=${api_cred}&regionCode=IN&type=video&maxResults=6`;
+
+export const YOUTUBE_API_COMMENTS = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=replies%2Csnippet&maxResults=10&key=${api_cred}&videoId=`;
 
 export const YOUTUBE_CHANNEL_DETAILS = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2C%20statistics&key=${api_cred}&id=`;
 

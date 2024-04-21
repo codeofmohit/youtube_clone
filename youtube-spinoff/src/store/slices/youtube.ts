@@ -15,14 +15,15 @@ const initialState: initialStateType = {
   searchTerm: null,
   loading: false,
   loading_suggested: false,
-  error: "",
+  error: null,
   channelName: "",
   channelId: "",
   channelDetails: null,
-  comments: null,
+  comments: [],
   loading_channelDetails: "",
   loading_comments: "",
   currentPlayingVideo: null,
+  sideBarHidden: false,
 };
 
 const youtubeSlice = createSlice({
@@ -44,6 +45,9 @@ const youtubeSlice = createSlice({
     clearSuggestedVideos: (state) => {
       state.suggestedVideos = [];
     },
+    toggleSideBar: (state) => {
+      state.sideBarHidden = !state.sideBarHidden;
+    },
   },
   extraReducers: (builder) => {
     // handing async thunk reducer : getOnLoadVideos action types
@@ -51,6 +55,13 @@ const youtubeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getOnLoadVideos.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.videos = [];
+        state.error = {
+          ...state.error,
+          onLoad: true,
+        };
+      }
       state.loading = false;
       state.nextPageToken = action.payload?.nextPageToken;
       state.videos = action.payload?.items;
@@ -64,6 +75,13 @@ const youtubeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getOnSearchVideos.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.videos = [];
+        state.error = {
+          ...state.error,
+          onSearch: true,
+        };
+      }
       state.loading = false;
       state.nextPageToken = action.payload?.nextPageToken;
       state.videos = action.payload?.items;
@@ -77,6 +95,13 @@ const youtubeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getCategoriesVideos.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.videos = [];
+        state.error = {
+          ...state.error,
+          onCategory: true,
+        };
+      }
       state.loading = false;
       state.nextPageToken = action.payload?.nextPageToken;
       state.videos = action.payload?.items;
@@ -90,6 +115,13 @@ const youtubeSlice = createSlice({
       state.loading_suggested = true;
     });
     builder.addCase(getSuggestedVideos.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.suggestedVideos = [];
+        state.error = {
+          ...state.error,
+          onSuggestions: true,
+        };
+      }
       state.loading_suggested = false;
       state.suggestedVideos = action.payload?.items;
     });
@@ -102,6 +134,13 @@ const youtubeSlice = createSlice({
       state.loading_channelDetails = true;
     });
     builder.addCase(getChannelDetails.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.channelDetails = null;
+        state.error = {
+          ...state.error,
+          onChannel: true,
+        };
+      }
       state.loading_channelDetails = false;
       state.channelDetails = action.payload?.items;
     });
@@ -114,6 +153,13 @@ const youtubeSlice = createSlice({
       state.loading_comments = true;
     });
     builder.addCase(getCommentsDetails.fulfilled, (state, action) => {
+      if (action.payload?.name === "AxiosError") {
+        state.comments = [];
+        state.error = {
+          ...state.error,
+          onComment: true,
+        };
+      }
       state.loading_comments = false;
       state.comments = action.payload?.items;
     });
@@ -130,5 +176,6 @@ export const {
   addChannelId,
   clearSuggestedVideos,
   addCurrentPlayingVideo,
+  toggleSideBar,
 } = youtubeSlice.actions;
 export default youtubeSlice.reducer;
