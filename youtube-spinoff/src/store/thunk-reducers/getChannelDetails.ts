@@ -9,7 +9,8 @@ export const getChannelDetails = createAsyncThunk<any, string>(
     try {
       const response = await axios.get(api);
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error?.response?.data?.error?.message);
       return error;
     }
   }

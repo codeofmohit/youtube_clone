@@ -228,7 +228,7 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
 - dark/light theme planning done ✅
 
-  - toggle dark class in parent html component, on click of dark/light mode button, use redux/context.
+  - toggle dark class in parent html component, make a higher order component wrapper Theme for the same, on click of dark/light mode button, use redux/context.
   - keep on using dark mode classes in tailwind for all the styling's along
 
 - building navbar UI ✅
@@ -249,8 +249,6 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
   - videoCard component from data ✅
 
-# YET TO DO [Before wrapping the project]
-
 - make search functionlity work, pupulate video in same UI ✅
 
 - make category functionlity work, pupulate video in same UI ✅
@@ -266,6 +264,17 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - comment section via data api v3
   - channel details sections
 
-- final UI touches | not done
-  - fix UI issues across site ?
-  - make site mobile responsive ?
+- final UI touches ✅
+
+  - fix UI issues across site ✅
+    1> give scrolls | not needed
+    2> fix down scroll, color mismatch issue | done
+    3> add footer | done
+    4> hide sidebar on click of hamburger menu | done
+
+- API Calls optimizaions ❌
+
+  - remove strict mode which is causing duplicate api calls
+  - cache api data in redux and use from there wherever possible
+
+- make site mobile responsive ❌

@@ -8,7 +8,11 @@ import { FaRegCircleUser } from "react-icons/fa6";
 // importing context
 import { ThemeContext } from "../theme/themeContext";
 // importing actions from youtubeSlice
-import { addSearchTerm, clearSuggestedVideos } from "../store/slices/youtube";
+import {
+  addSearchTerm,
+  clearSuggestedVideos,
+  toggleSideBar,
+} from "../store/slices/youtube";
 // importing useAppDiscpatch from store
 import { useAppDispatch } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
@@ -43,7 +47,12 @@ const Navbar = () => {
   return (
     <div className="navBar bg-white dark:bg-[#0f0f0f] p-4 flex">
       <div className="navLeft w-1/5 flex items-center">
-        <div className="hamBurgurMenu mr-4">
+        <div
+          className="hamBurgurMenu mr-4 cursor-pointer"
+          onClick={() => {
+            dispatch(toggleSideBar());
+          }}
+        >
           <RxHamburgerMenu size={"1.5em"} />
         </div>
         <div
@@ -56,7 +65,7 @@ const Navbar = () => {
             }
           }}
         >
-          <div className="FaYoutube mr-1">
+          <div className="FaYoutube mr-1 cursor-pointer">
             <FaYoutube size={"1.75em"} color="red" />
           </div>
           <span className="text-xl">FunTube</span>

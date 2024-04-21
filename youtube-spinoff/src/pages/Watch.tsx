@@ -6,6 +6,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getSuggestedVideos } from "../store/thunk-reducers/getSuggestedVideos";
 import VideoSuggestions from "../components/VideoSuggestions";
+import Footer from "../components/Footer";
 
 const Watch = () => {
   const { id } = useParams();
@@ -14,6 +15,10 @@ const Watch = () => {
 
   const suggestedVideos = useAppSelector(
     (state) => state?.youtube?.suggestedVideos
+  );
+
+  const isSideBarHidden = useAppSelector(
+    (state) => state?.youtube?.sideBarHidden
   );
 
   const channelName = useAppSelector((state) => state?.youtube?.channelName);
@@ -31,14 +36,21 @@ const Watch = () => {
         <Navbar />
       </nav>
       <main className="flex translate-y-16 w-full">
-        <aside className="w-2/12 p-2">
-          <Sidebar />
-        </aside>
-        <div className="currentPlayingVideo flex w-10/12">
+        {!isSideBarHidden && (
+          <aside className="w-2/12 p-2">
+            <Sidebar />
+          </aside>
+        )}
+        <div
+          className={`currentPlayingVideo flex ${
+            !isSideBarHidden ? "w-10/12" : "w-12/12"
+          } `}
+        >
           <VideoPlayer id={id} />
           <VideoSuggestions suggestedVideos={suggestedVideos} />
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

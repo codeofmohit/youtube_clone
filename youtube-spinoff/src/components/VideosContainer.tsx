@@ -3,11 +3,14 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import Spinner from "./Spinner";
 import { useEffect } from "react";
 import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
+import ErrorBox from "./ErrorBox";
 
 const VideosConatiner = () => {
   const videos = useAppSelector((state) => state.youtube?.videos);
   const isLoading = useAppSelector((state) => state.youtube?.loading);
   const dispatch = useAppDispatch();
+  // checking for errors
+  const isError = useAppSelector((state) => state.youtube.error);
 
   // on load : loading most popular videos
   useEffect(() => {
@@ -22,6 +25,12 @@ const VideosConatiner = () => {
         <Spinner />
       </div>
     );
+  }
+
+  if (isError) {
+    if (isError?.onLoad || isError?.onSearch || isError?.onCategory) {
+      return <ErrorBox />;
+    }
   }
 
   return (

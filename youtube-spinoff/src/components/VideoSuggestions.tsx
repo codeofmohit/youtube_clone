@@ -1,8 +1,13 @@
 import VideoCard from "../components/VideoCard";
 import { useAppSelector } from "../store/hooks";
 import Spinner from "./Spinner";
+import ErrorBox from "./ErrorBox";
+
 const VideoSuggestions = ({ suggestedVideos }: any) => {
   const loading = useAppSelector((state) => state?.youtube?.loading_suggested);
+
+  // checking for errors
+  const isError = useAppSelector((state) => state.youtube.error);
 
   if (loading) {
     return (
@@ -11,8 +16,15 @@ const VideoSuggestions = ({ suggestedVideos }: any) => {
       </div>
     );
   }
+
+  if (isError) {
+    if (isError?.onSuggestions) {
+      return <ErrorBox section="suggestions" />;
+    }
+  }
+
   return (
-    <div className="videoSuggestions m-6 w-4/12">
+    <div className="videoSuggestions m-6 w-4/12 px-4">
       <h1 className="text-xl mb-2">Suggested Videos</h1>
       <hr className="w-full" />
       {suggestedVideos?.length &&
