@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { YoutubeVideo } from "../types/Types";
 import { useAppDispatch } from "../store/hooks";
-import { addChannelName, clearSuggestedVideos } from "../store/slices/youtube";
+import {
+  addChannelName,
+  addChannelId,
+  addCurrentPlayingVideo,
+} from "../store/slices/youtube";
+import { timeStampFormatter } from "../utils/utilities/timeStampFormatter";
+import { countFormatter } from "../utils/utilities/countFormatter";
 
 const VideoCard = ({
   data,
@@ -23,7 +29,12 @@ const VideoCard = ({
         const channelName = data?.snippet?.channelTitle
           ? data?.snippet?.channelTitle
           : "random";
+        const channelId = data?.snippet?.channelId
+          ? data?.snippet?.channelId
+          : "UC3XBkDeCVXCoCofFgfUZXGw";
         dispatch(addChannelName(channelName));
+        dispatch(addChannelId(channelId));
+        dispatch(addCurrentPlayingVideo(data));
         navigate(`/watch/${navigateToID}/${channelName}`);
       }}
     >
@@ -33,13 +44,22 @@ const VideoCard = ({
           alt={data?.snippet?.title}
         />
       </div>
-      <div className="infoContainer p-1">
-        <p className="font-medium text-sm bg-slate-200 dark:bg-slate-800 p-1 rounded-l my-1 text-center">
-          {data?.snippet?.channelTitle}
-        </p>
-        <p className=" break-before-all p-1 text-sm line-clamp-2">
+      <div className="infoContainer p-1 text-sm">
+        <p className="font-medium break-before-all p-1 line-clamp-2">
           {data?.snippet?.title}
         </p>
+        <hr />
+        <div className="otherDetails ">
+          <p className="p-1 line-clamp-1  font-medium -mb-1">
+            {data?.snippet?.channelTitle}
+          </p>
+          <div className="viewCountPublishedAt flex gap-1 p-1 text-xs text-[#606060] dark:text-[#AAAAAA]">
+            {data?.statistics?.viewCount && (
+              <p>{countFormatter(data?.statistics?.viewCount)} views | </p>
+            )}
+            <p>{timeStampFormatter(data?.snippet?.publishedAt)}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

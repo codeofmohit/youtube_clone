@@ -261,32 +261,11 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
 
   - use channel title as a search param, and then make a search call and get list of video
 
-- quickly skim over, akshay saini videos and implement additional functionality ❌
+- added functionality added ✅
 
-  - additional features as per akshay saini videos : ❌
+  - comment section via data api v3
+  - channel details sections
 
-    - youtube autosuggestion api, on search input - [do in planned way - create smaller components] ❌
-      - adding debouncing in autosuggestion api [using redux]
-      - adding caching also, for backkeypress, storing results in cache, if available in cache that loading from there
-    - n level deep nested comments [with replies], via recursion
-
-    - live chat feature [with dummy data] - [do in planned way - create smaller components] ❌
-      - 2 ways to live data
-        - web socket [2 ways bidirection data flow in readl time (close to real time)]
-        - api polling [calling api repeatatively in each 20 seconds, to get new data]
-
-- on watch page, load suggested videos and comments [if possible, don't waste more time on this] ❌
-
-# Once all done then, fix these bugs [less priority but good for optimizin app UX]
-
-- additional features [for later once rest everything is done] ? ❌
-  - 1> fix UI ?
-    - 0> Mobile responsive ?
-    - 1> like funtube make sidebar sticky/fixed, only main content video should be scrollable ?
-    - 2> bottom white bg on dark mode fix it ?
-    - 3> in search bar either clear search once entered, or give option ot manual clear
-  - 2> infinite scroll ?
-    - make use of react-infinite-scroll component and implement infinite scroll scroll feature ?
-  - 3> add footer ?
-  - 4> add alert for sign in button ?
-  - 5> instead of youtube use funtube
+- final UI touches | not done
+  - fix UI issues across site ?
+  - make site mobile responsive ?
