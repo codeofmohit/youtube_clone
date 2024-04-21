@@ -32,6 +32,7 @@ export interface YoutubeVideo {
   etag: string;
   id: any;
   snippet: YoutubeVideoSnippet;
+  statistics: any;
 }
 
 export interface initialStateType {
@@ -43,4 +44,19 @@ export interface initialStateType {
   loading_suggested: boolean;
   error: string | null;
   channelName: any;
+  channelId: any;
+  channelDetails: any;
+  comments: any;
+  loading_channelDetails: any;
+  loading_comments: any;
+  currentPlayingVideo: any;
 }
+
+export type commentType = {
+  userImg: String;
+  userHandle: String;
+  publishedAt: String;
+  displayText: String;
+  likesCount: number;
+  totalReplyCount: number | null;
+};

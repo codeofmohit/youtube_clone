@@ -5,6 +5,8 @@ import { getOnLoadVideos } from "../thunk-reducers/getOnLoadVideos";
 import { getOnSearchVideos } from "../thunk-reducers/getOnSearchVideos";
 import { getCategoriesVideos } from "../thunk-reducers/getCategoriesVideos";
 import { getSuggestedVideos } from "../thunk-reducers/getSuggestedVideos";
+import { getChannelDetails } from "../thunk-reducers/getChannelDetails";
+import { getCommentsDetails } from "../thunk-reducers/getCommentsDetails";
 
 const initialState: initialStateType = {
   nextPageToken: "",
@@ -15,6 +17,12 @@ const initialState: initialStateType = {
   loading_suggested: false,
   error: "",
   channelName: "",
+  channelId: "",
+  channelDetails: null,
+  comments: null,
+  loading_channelDetails: "",
+  loading_comments: "",
+  currentPlayingVideo: null,
 };
 
 const youtubeSlice = createSlice({
@@ -26,6 +34,12 @@ const youtubeSlice = createSlice({
     },
     addChannelName: (state, action) => {
       state.channelName = action.payload;
+    },
+    addChannelId: (state, action) => {
+      state.channelId = action.payload;
+    },
+    addCurrentPlayingVideo: (state, action) => {
+      state.currentPlayingVideo = action.payload;
     },
     clearSuggestedVideos: (state) => {
       state.suggestedVideos = [];
@@ -83,9 +97,38 @@ const youtubeSlice = createSlice({
       state.loading_suggested = false;
       state.error = "Unknown error fetching videos";
     });
+    // handing async thunk reducer : getChannelDetails action types
+    builder.addCase(getChannelDetails.pending, (state, action) => {
+      state.loading_channelDetails = true;
+    });
+    builder.addCase(getChannelDetails.fulfilled, (state, action) => {
+      state.loading_channelDetails = false;
+      state.channelDetails = action.payload?.items;
+    });
+    builder.addCase(getChannelDetails.rejected, (state, action) => {
+      state.loading_channelDetails = false;
+      state.error = "Unknown error fetching channel deatils";
+    });
+    // handing async thunk reducer : getCommentsDetails action types
+    builder.addCase(getCommentsDetails.pending, (state, action) => {
+      state.loading_comments = true;
+    });
+    builder.addCase(getCommentsDetails.fulfilled, (state, action) => {
+      state.loading_comments = false;
+      state.comments = action.payload?.items;
+    });
+    builder.addCase(getCommentsDetails.rejected, (state, action) => {
+      state.loading_comments = false;
+      state.error = "Unknown error fetching comments";
+    });
   },
 });
 
-export const { addSearchTerm, addChannelName, clearSuggestedVideos } =
-  youtubeSlice.actions;
+export const {
+  addSearchTerm,
+  addChannelName,
+  addChannelId,
+  clearSuggestedVideos,
+  addCurrentPlayingVideo,
+} = youtubeSlice.actions;
 export default youtubeSlice.reducer;
