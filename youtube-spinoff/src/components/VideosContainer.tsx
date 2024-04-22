@@ -14,7 +14,7 @@ const VideosConatiner = () => {
 
   // on load : loading most popular videos
   useEffect(() => {
-    if (videos?.length === 0) {
+    if (videos?.length !== 20) {
       dispatch(getOnLoadVideos());
     }
   }, [videos, dispatch]);

@@ -59,7 +59,6 @@ const Navbar = () => {
           className="logo flex items-center cursor-pointer"
           onClick={() => {
             dispatch(clearSuggestedVideos());
-            dispatch(getOnLoadVideos());
             if (window.location.pathname !== "/") {
               navigate("/");
             }
