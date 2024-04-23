@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import { countFormatter } from "../utils/utilities/countFormatter";
 import { timeStampFormatter } from "../utils/utilities/timeStampFormatter";
+import ErrorBox from "./ErrorBox";
 
 const ChannelDetails = () => {
   const [subscribeBtn, setSubscribeBtn] = useState<boolean>(true);
@@ -14,12 +15,13 @@ const ChannelDetails = () => {
     (state) => state.youtube?.currentPlayingVideo
   );
 
-  console.log(channelDetails);
-  console.log(channelDetails[0]?.snippet?.thumbnails?.default);
-
   useEffect(() => {
     setSubscribeBtn(true);
   }, []);
+
+  if (!channelDetails) {
+    return <ErrorBox />;
+  }
 
   return (
     <div className="videoInfo flex flex-col gap-2">

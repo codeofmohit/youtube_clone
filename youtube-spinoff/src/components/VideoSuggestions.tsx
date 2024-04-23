@@ -19,7 +19,7 @@ const VideoSuggestions = ({ suggestedVideos }: any) => {
 
   if (isError) {
     if (isError?.onSuggestions) {
-      return <ErrorBox section="suggestions" />;
+      return <ErrorBox />;
     }
   }
 
@@ -27,11 +27,14 @@ const VideoSuggestions = ({ suggestedVideos }: any) => {
     <div className="videoSuggestions m-6 w-4/12 px-4">
       <h1 className="text-xl mb-2">Suggested Videos</h1>
       <hr className="w-full" />
-      {suggestedVideos?.length &&
+      {suggestedVideos?.length !== 0 ? (
         suggestedVideos.map((item: any) => {
           const id = typeof item.id == "string" ? item?.id : item?.id?.videoId;
           return <VideoCard data={item} key={id} suggested={true} />;
-        })}
+        })
+      ) : (
+        <ErrorBox />
+      )}
     </div>
   );
 };

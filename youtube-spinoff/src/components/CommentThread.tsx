@@ -1,8 +1,13 @@
 import { useAppSelector } from "../store/hooks";
 import Comment from "./Comment";
+import ErrorBox from "./ErrorBox";
 
 const CommentThreads = () => {
   const commentThreads = useAppSelector((state) => state?.youtube?.comments);
+
+  if (commentThreads.length === 0) {
+    return <ErrorBox />;
+  }
 
   return (
     <div className="commentThread">

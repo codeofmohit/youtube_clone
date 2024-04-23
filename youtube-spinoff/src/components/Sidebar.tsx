@@ -1,23 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import { sideBaMenus } from "../constants/sideBarMenus";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getCategoriesVideos } from "../store/thunk-reducers/getCategoriesVideos";
-import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
-import { clearSuggestedVideos } from "../store/slices/youtube";
+import { addVideosType, clearSuggestedVideos } from "../store/slices/youtube";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const suggestedVideos = useAppSelector(
+    (state) => state.youtube?.suggestedVideos
+  );
+
+  const videoType = useAppSelector((state) => state.youtube.videosType);
+
   const loadingVideosByCategories = (category: string) => {
-    dispatch(clearSuggestedVideos());
+    if (suggestedVideos.length !== 0) {
+      dispatch(clearSuggestedVideos());
+    }
+
     if (window.location.pathname !== "/") {
       navigate("/");
     }
     if (category === "Home") {
-      dispatch(getOnLoadVideos());
+      videoType && dispatch(addVideosType("most-popular"));
+      return;
     } else {
       dispatch(getCategoriesVideos(category));
+      dispatch(addVideosType("category"));
     }
   };
 

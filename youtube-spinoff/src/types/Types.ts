@@ -38,6 +38,7 @@ export interface YoutubeVideo {
 export interface initialStateType {
   nextPageToken: string | null;
   videos: YoutubeVideo[];
+  cachedHomePageVideos: YoutubeVideo[] | null;
   suggestedVideos: YoutubeVideo[];
   searchTerm: string | null;
   loading: boolean;
@@ -51,6 +52,7 @@ export interface initialStateType {
   loading_comments: any;
   currentPlayingVideo: any;
   sideBarHidden: boolean;
+  videosType: string | null;
 }
 
 export type commentType = {

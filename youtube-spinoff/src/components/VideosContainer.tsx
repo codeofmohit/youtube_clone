@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 import { useEffect } from "react";
 import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
 import ErrorBox from "./ErrorBox";
+import { addVideosType, loadFromCache } from "../store/slices/youtube";
 
 const VideosConatiner = () => {
   const videos = useAppSelector((state) => state.youtube?.videos);
@@ -12,12 +13,30 @@ const VideosConatiner = () => {
   // checking for errors
   const isError = useAppSelector((state) => state.youtube.error);
 
-  // on load : loading most popular videos
+  const videosType = useAppSelector((state) => state.youtube.videosType);
+
+  const cachedHomePageVideos = useAppSelector(
+    (state) => state.youtube.cachedHomePageVideos
+  );
+
+  // on load : loading most popular videos with caching algorith to avoid unnecesry api call's [highly optimised]
   useEffect(() => {
+    // case of only 1st load
     if (videos?.length === 0) {
       dispatch(getOnLoadVideos());
+    } else {
+      // case of NOT the 1st time load [via internal routing]
+      if (videosType === "most-popular") {
+        // check if videos are in cache, then don't make api call, instead load from cache
+        if (cachedHomePageVideos) {
+          dispatch(loadFromCache());
+        } else {
+          dispatch(getOnLoadVideos());
+        }
+        dispatch(addVideosType(null));
+      }
     }
-  }, [videos, dispatch]);
+  }, [videos, dispatch, videosType, cachedHomePageVideos]);
 
   if (isLoading) {
     return (

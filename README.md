@@ -272,9 +272,9 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
     3> add footer | done
     4> hide sidebar on click of hamburger menu | done
 
-- API Calls optimizaions ❌
+- API Calls optimizaions ✅
 
-  - remove strict mode which is causing duplicate api calls
+  - remove strict mode which is causing duplicate api calls | done
   - cache api data in redux and use from there wherever possible
 
 - make site mobile responsive ❌
