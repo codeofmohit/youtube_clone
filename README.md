@@ -1,6 +1,6 @@
 # funtube_clone
 
-funtube clone -> React + Redux + TypeScript. Live Project Link : ?
+funtube clone -> React + Redux + TypeScript. Live Project Link : https://streamy-project-0.web.app/
 
 ## Dev Flow [design doc - rough]
 
@@ -63,6 +63,6 @@ funtube clone -> React + Redux + TypeScript. Live Project Link : ?
   - cache api data in redux and use from there wherever possible
     - built an optmized cache mechanism and most expensive api now calling only 1 every session
 
-- make site mobile responsive ❌
+- make site mobile responsive ✅
   - beta v1 done, ready for test ✅
-  - deploy the app
+  - deploy the app ✅
