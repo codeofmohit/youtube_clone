@@ -30,6 +30,8 @@ const Watch = () => {
     }
   }, [dispatch, channelName, suggestedVideos]);
 
+  const ifMobile = window.innerWidth < 450 ? true : false;
+
   return (
     <div className="watchPage">
       <nav className="mb-1 md:mb-2 w-full fixed z-10">
@@ -47,7 +49,7 @@ const Watch = () => {
           } `}
         >
           <VideoPlayer id={id} />
-          <VideoSuggestions suggestedVideos={suggestedVideos} />
+          {!ifMobile && <VideoSuggestions suggestedVideos={suggestedVideos} />}
         </div>
       </main>
       <Footer />

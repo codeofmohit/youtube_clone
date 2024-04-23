@@ -14,7 +14,7 @@ const Home = () => {
       <nav className="mb-1 md:mb-2 w-full fixed z-10">
         <Navbar />
       </nav>
-      <main className="flex translate-y-12 md:translate-y-16">
+      <main className="flex translate-y-20 md:translate-y-16">
         {!isSideBarHidden && (
           <aside className="w-2/12 p-1 md:p-2">
             <Sidebar />

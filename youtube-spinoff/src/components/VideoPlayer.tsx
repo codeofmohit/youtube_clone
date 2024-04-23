@@ -5,10 +5,15 @@ import { getCommentsDetails } from "../store/thunk-reducers/getCommentsDetails";
 import { getChannelDetails } from "../store/thunk-reducers/getChannelDetails";
 import { useEffect } from "react";
 import ErrorBox from "./ErrorBox";
+import VideoSuggestions from "./VideoSuggestions";
 
 const VideoPlayer = ({ id }: { id: any }) => {
   const channelId = useAppSelector((state) => state.youtube?.channelId);
   const dispatch = useAppDispatch();
+
+  const suggestedVideos = useAppSelector(
+    (state) => state?.youtube?.suggestedVideos
+  );
 
   useEffect(() => {
     //call thunk reducer to get the channelInfo
@@ -19,6 +24,8 @@ const VideoPlayer = ({ id }: { id: any }) => {
   if (!id) {
     return <ErrorBox />;
   }
+
+  const ifMobile = window.innerWidth < 450 ? true : false;
 
   const playerHeightResponsive = window.innerWidth < 450 ? "200" : "472";
 
@@ -38,6 +45,7 @@ const VideoPlayer = ({ id }: { id: any }) => {
       </div>
       <ChannelDetails />
       <CommentThreads />
+      {ifMobile && <VideoSuggestions suggestedVideos={suggestedVideos} />}
     </div>
   );
 };

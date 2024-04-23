@@ -21,7 +21,7 @@ const VideoCard = ({
   return (
     <div
       className={`videoCard bg-[#f2f2f2] dark:bg-[#292828] m-2 shadow-md border rounded-xl md:rounded ${
-        !suggested ? "w-5/12 md:w-2/12" : "w-[80%] my-4"
+        !suggested ? "w-5/12 md:w-2/12" : "w-[95%] md:w-[80%] my-4"
       }  cursor-pointer`}
       onClick={() => {
         const navigateToID =
@@ -36,6 +36,9 @@ const VideoCard = ({
         dispatch(addChannelId(channelId));
         dispatch(addCurrentPlayingVideo(data));
         navigate(`/watch/${navigateToID}/${channelName}`);
+        if (suggested) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }}
     >
       <div className="imageContainer">

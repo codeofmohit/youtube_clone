@@ -32,6 +32,8 @@ const Navbar = () => {
 
   const videoType = useAppSelector((state) => state.youtube.videosType);
 
+  const sideBarHidden = useAppSelector((state) => state.youtube.sideBarHidden);
+
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchTerm !== "") {
@@ -55,10 +57,12 @@ const Navbar = () => {
   const iconSize = window.innerWidth < 450 ? "1.25em" : "1.5em";
 
   return (
-    <div className="navBar bg-white dark:bg-[#0f0f0f] p-2 md:p-4 flex">
+    <div className="navBar bg-white dark:bg-[#0f0f0f] p-2 md:p-4 flex shadow-lg py-4 md:py-2">
       <div className="navLeft w-1/5 md:w-1/5 flex items-center">
         <div
-          className="hamBurgurMenu mr-2 md:mr-4 cursor-pointer "
+          className={`hamBurgurMenu mr-2 md:mr-4 cursor-pointer ${
+            !sideBarHidden && "rotate-90"
+          }`}
           onClick={() => {
             dispatch(toggleSideBar());
           }}
@@ -80,7 +84,7 @@ const Navbar = () => {
           <div className="FaYoutube mr-1 cursor-pointer">
             <FaYoutube size={iconSize} color="red" />
           </div>
-          <span className="md:text-xl">FunTube</span>
+          <span className="text-lg md:text-xl">FunTube</span>
           <sup className="text-xs md:text-inherit">IN</sup>
         </div>
       </div>
@@ -92,7 +96,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search for videos"
-            className="border p-1 pl-3 md:pl-4 w-2/3 md:w-1/2 rounded md:rounded-[2rem] mr-0 md:mr-2 dark:bg-[#212121] text-sm md:text-inherit"
+            className="border p-1 pl-3 md:pl-4 w-2/3 md:w-1/2 rounded md:rounded-[2rem] mr-0 md:mr-2 dark:bg-[#212121]"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -102,7 +106,7 @@ const Navbar = () => {
             <CiSearch />
           </button>
           <div
-            className="microPhoneButton bg-[#e5e5e5] dark:text-[#212121] p-2 rounded-[2rem] cursor-pointer"
+            className="microPhoneButton bg-[#e5e5e5] dark:text-[#212121] p-3 md:p-2 rounded-[2rem] cursor-pointer"
             onClick={switchThemeHandler}
             title="change the theme!"
           >
