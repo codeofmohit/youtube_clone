@@ -11,6 +11,7 @@ import { getCommentsDetails } from "../thunk-reducers/getCommentsDetails";
 const initialState: initialStateType = {
   nextPageToken: "",
   videos: [],
+  cachedHomePageVideos: null,
   suggestedVideos: [],
   searchTerm: null,
   loading: false,
@@ -24,6 +25,7 @@ const initialState: initialStateType = {
   loading_comments: "",
   currentPlayingVideo: null,
   sideBarHidden: false,
+  videosType: null,
 };
 
 const youtubeSlice = createSlice({
@@ -48,6 +50,14 @@ const youtubeSlice = createSlice({
     toggleSideBar: (state) => {
       state.sideBarHidden = !state.sideBarHidden;
     },
+    addVideosType: (state, action) => {
+      state.videosType = action.payload;
+    },
+    loadFromCache: (state) => {
+      if (state.cachedHomePageVideos) {
+        state.videos = state.cachedHomePageVideos;
+      }
+    },
   },
   extraReducers: (builder) => {
     // handing async thunk reducer : getOnLoadVideos action types
@@ -65,6 +75,7 @@ const youtubeSlice = createSlice({
       state.loading = false;
       state.nextPageToken = action.payload?.nextPageToken;
       state.videos = action.payload?.items;
+      state.cachedHomePageVideos = action.payload?.items;
     });
     builder.addCase(getOnLoadVideos.rejected, (state) => {
       state.loading = false;
@@ -177,5 +188,7 @@ export const {
   clearSuggestedVideos,
   addCurrentPlayingVideo,
   toggleSideBar,
+  addVideosType,
+  loadFromCache,
 } = youtubeSlice.actions;
 export default youtubeSlice.reducer;

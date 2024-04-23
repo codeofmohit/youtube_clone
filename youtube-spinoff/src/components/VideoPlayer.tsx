@@ -4,14 +4,11 @@ import CommentThreads from "./CommentThread";
 import { getCommentsDetails } from "../store/thunk-reducers/getCommentsDetails";
 import { getChannelDetails } from "../store/thunk-reducers/getChannelDetails";
 import { useEffect } from "react";
+import ErrorBox from "./ErrorBox";
 
 const VideoPlayer = ({ id }: { id: any }) => {
   const channelId = useAppSelector((state) => state.youtube?.channelId);
   const dispatch = useAppDispatch();
-  const channelDetails = useAppSelector(
-    (state) => state.youtube?.channelDetails
-  );
-  const commentsDetails = useAppSelector((state) => state.youtube?.comments);
 
   const sideBarHidden = useAppSelector(
     (state) => state?.youtube?.sideBarHidden
@@ -23,8 +20,8 @@ const VideoPlayer = ({ id }: { id: any }) => {
     dispatch(getCommentsDetails(id));
   }, [dispatch, channelId, id]);
 
-  if (!channelDetails || !commentsDetails) {
-    return <h1>Loading...</h1>;
+  if (!id) {
+    return <ErrorBox />;
   }
 
   return (

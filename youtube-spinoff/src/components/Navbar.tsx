@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // importing icons
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaYoutube } from "react-icons/fa";
@@ -10,21 +10,28 @@ import { ThemeContext } from "../theme/themeContext";
 // importing actions from youtubeSlice
 import {
   addSearchTerm,
+  addVideosType,
   clearSuggestedVideos,
   toggleSideBar,
 } from "../store/slices/youtube";
 // importing useAppDiscpatch from store
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
 import { getOnSearchVideos } from "../store/thunk-reducers/getOnSearchVideos";
-import { getOnLoadVideos } from "../store/thunk-reducers/getOnLoadVideos";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const theme = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const suggestedVideos = useAppSelector(
+    (state) => state.youtube?.suggestedVideos
+  );
+
+  const videoType = useAppSelector((state) => state.youtube.videosType);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,6 +42,8 @@ const Navbar = () => {
       dispatch(addSearchTerm(searchTerm));
       // useFetchOnSearchVideos();
       dispatch(getOnSearchVideos(searchTerm));
+      dispatch(addVideosType("searched"));
+      setSearchTerm("");
     } else {
       alert("Search can not be blank! please provide a search value!");
     }
@@ -58,7 +67,10 @@ const Navbar = () => {
         <div
           className="logo flex items-center cursor-pointer"
           onClick={() => {
-            dispatch(clearSuggestedVideos());
+            if (suggestedVideos.length !== 0) {
+              dispatch(clearSuggestedVideos());
+            }
+            videoType && dispatch(addVideosType("most-popular"));
             if (window.location.pathname !== "/") {
               navigate("/");
             }
