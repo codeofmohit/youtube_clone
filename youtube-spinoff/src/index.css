@@ -7,3 +7,10 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+/* for mobile responsiveness  */
+@media (max-width: 450px) {
+  html {
+    font-size: 12px;
+  }
+}

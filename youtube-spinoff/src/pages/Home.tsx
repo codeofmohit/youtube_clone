@@ -11,19 +11,19 @@ const Home = () => {
 
   return (
     <div className="homePage">
-      <nav className="mb-2 w-full fixed z-10">
+      <nav className="mb-1 md:mb-2 w-full fixed z-10">
         <Navbar />
       </nav>
-      <main className="flex translate-y-16">
+      <main className="flex translate-y-12 md:translate-y-16">
         {!isSideBarHidden && (
-          <aside className="w-2/12 p-2">
+          <aside className="w-2/12 p-1 md:p-2">
             <Sidebar />
           </aside>
         )}
         <div
           className={`videosConatiner ${
             !isSideBarHidden ? "w-10/12" : "w-12/12"
-          } p-2`}
+          } p-1 md:p-2`}
         >
           <Outlet />
         </div>

@@ -26,7 +26,7 @@ const ChannelDetails = () => {
   return (
     <div className="videoInfo flex flex-col gap-2">
       <div className="videoTitle">
-        <h1 className="font-bold text-xl py-6">
+        <h1 className="font-medium md:font-bold text-l md:text-xl py-6">
           {currentPlayingVideoDetails?.snippet?.title}
         </h1>
       </div>

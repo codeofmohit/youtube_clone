@@ -8,6 +8,8 @@ import { getSuggestedVideos } from "../thunk-reducers/getSuggestedVideos";
 import { getChannelDetails } from "../thunk-reducers/getChannelDetails";
 import { getCommentsDetails } from "../thunk-reducers/getCommentsDetails";
 
+const sideBarHiddenValue = window.innerWidth < 450 ? true : false;
+
 const initialState: initialStateType = {
   nextPageToken: "",
   videos: [],
@@ -24,7 +26,7 @@ const initialState: initialStateType = {
   loading_channelDetails: "",
   loading_comments: "",
   currentPlayingVideo: null,
-  sideBarHidden: false,
+  sideBarHidden: sideBarHiddenValue,
   videosType: null,
 };
 

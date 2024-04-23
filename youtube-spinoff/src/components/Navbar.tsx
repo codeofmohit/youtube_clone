@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 // importing icons
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaYoutube } from "react-icons/fa";
@@ -19,7 +19,6 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 // import useFetchOnSearchVideos from "../utils/custom_hooks/useFetchOnSearchVideos";
 import { getOnSearchVideos } from "../store/thunk-reducers/getOnSearchVideos";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,16 +52,18 @@ const Navbar = () => {
     theme.toggleCurrentTheme();
   };
 
+  const iconSize = window.innerWidth < 450 ? "1.25em" : "1.5em";
+
   return (
-    <div className="navBar bg-white dark:bg-[#0f0f0f] p-4 flex">
-      <div className="navLeft w-1/5 flex items-center">
+    <div className="navBar bg-white dark:bg-[#0f0f0f] p-2 md:p-4 flex">
+      <div className="navLeft w-1/5 md:w-1/5 flex items-center">
         <div
-          className="hamBurgurMenu mr-4 cursor-pointer"
+          className="hamBurgurMenu mr-2 md:mr-4 cursor-pointer "
           onClick={() => {
             dispatch(toggleSideBar());
           }}
         >
-          <RxHamburgerMenu size={"1.5em"} />
+          <RxHamburgerMenu size={iconSize} />
         </div>
         <div
           className="logo flex items-center cursor-pointer"
@@ -77,21 +78,21 @@ const Navbar = () => {
           }}
         >
           <div className="FaYoutube mr-1 cursor-pointer">
-            <FaYoutube size={"1.75em"} color="red" />
+            <FaYoutube size={iconSize} color="red" />
           </div>
-          <span className="text-xl">FunTube</span>
-          <sup>IN</sup>
+          <span className="md:text-xl">FunTube</span>
+          <sup className="text-xs md:text-inherit">IN</sup>
         </div>
       </div>
-      <div className="navCenter w-4/5">
+      <div className="navCenter w-4/5 md:w-4/5">
         <form
-          className="flex items-center justify-center"
+          className="flex items-center justify-end md:justify-center"
           onSubmit={submitHandler}
         >
           <input
             type="text"
-            placeholder="Search"
-            className="border p-1 pl-4 w-1/2 rounded-[2rem] mr-2 dark:bg-[#212121]"
+            placeholder="Search for videos"
+            className="border p-1 pl-3 md:pl-4 w-2/3 md:w-1/2 rounded md:rounded-[2rem] mr-0 md:mr-2 dark:bg-[#212121] text-sm md:text-inherit"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -113,7 +114,7 @@ const Navbar = () => {
           </div>
         </form>
       </div>
-      <div className="navRigh w-1/5 flex items-center justify-center">
+      <div className="navRigh w-1/5 flex items-center justify-center hidden md:block">
         <button className="signInBtn flex items-center justify-center border rounded-[2rem] px-3 py-1 text-sky-800 dark:text-sky-400">
           <div className="userIocn mr-2">
             <FaRegCircleUser />
