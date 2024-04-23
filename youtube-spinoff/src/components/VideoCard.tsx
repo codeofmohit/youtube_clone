@@ -20,8 +20,8 @@ const VideoCard = ({
   const dispatch = useAppDispatch();
   return (
     <div
-      className={`videoCard m-2 shadow-lg border rounded ${
-        !suggested ? "w-2/12" : "w-[80%] my-4"
+      className={`videoCard bg-[#f2f2f2] dark:bg-[#292828] m-2 shadow-md border rounded-xl md:rounded ${
+        !suggested ? "w-5/12 md:w-2/12" : "w-[80%] my-4"
       }  cursor-pointer`}
       onClick={() => {
         const navigateToID =
@@ -40,22 +40,25 @@ const VideoCard = ({
     >
       <div className="imageContainer">
         <img
+          className=" rounded-xl md:rounded-none"
           src={data?.snippet?.thumbnails?.medium?.url}
           alt={data?.snippet?.title}
         />
       </div>
-      <div className="infoContainer p-1 text-sm">
-        <p className="font-medium break-before-all p-1 line-clamp-2">
+      <div className="infoContainer p-1 text-xs md:text-sm ">
+        <p className="font-medium  leading-relaxed md:leading-normal break-before-all p-1 line-clamp-2">
           {data?.snippet?.title}
         </p>
         <hr />
-        <div className="otherDetails ">
+        <div className="otherDetails">
           <p className="p-1 line-clamp-1  font-medium -mb-1">
             {data?.snippet?.channelTitle}
           </p>
           <div className="viewCountPublishedAt flex gap-1 p-1 text-xs text-[#606060] dark:text-[#AAAAAA]">
             {data?.statistics?.viewCount && (
-              <p>{countFormatter(data?.statistics?.viewCount)} views | </p>
+              <p className="">
+                {countFormatter(data?.statistics?.viewCount)} views |{" "}
+              </p>
             )}
             <p>{timeStampFormatter(data?.snippet?.publishedAt)}</p>
           </div>

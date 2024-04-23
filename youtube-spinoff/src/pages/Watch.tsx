@@ -28,16 +28,16 @@ const Watch = () => {
     if (suggestedVideos?.length === 0) {
       dispatch(getSuggestedVideos(channelName));
     }
-  }, [dispatch, channelName]);
+  }, [dispatch, channelName, suggestedVideos]);
 
   return (
-    <div className="homePage">
-      <nav className="mb-2 w-full fixed z-10">
+    <div className="watchPage">
+      <nav className="mb-1 md:mb-2 w-full fixed z-10">
         <Navbar />
       </nav>
-      <main className="flex translate-y-16 w-full">
+      <main className="flex translate-y-12 md:translate-y-16">
         {!isSideBarHidden && (
-          <aside className="w-2/12 p-2">
+          <aside className="w-2/12 p-1 md:p-2">
             <Sidebar />
           </aside>
         )}

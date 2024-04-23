@@ -11,7 +11,7 @@ const VideoSuggestions = ({ suggestedVideos }: any) => {
 
   if (loading) {
     return (
-      <div className="loader flex justify-center items-center h-[50vh]">
+      <div className="hidden md:block loader flex justify-center items-center h-[50vh]">
         <Spinner />
       </div>
     );
@@ -24,7 +24,7 @@ const VideoSuggestions = ({ suggestedVideos }: any) => {
   }
 
   return (
-    <div className="videoSuggestions m-6 w-4/12 px-4">
+    <div className="videoSuggestions m-6 w-4/12 px-4 hidden md:block">
       <h1 className="text-xl mb-2">Suggested Videos</h1>
       <hr className="w-full" />
       {suggestedVideos?.length !== 0 ? (

@@ -39,12 +39,12 @@ const Sidebar = () => {
             return (
               <li
                 key={item.name}
-                className="flex mx-1 px-1 items-center my-2 py-2 hover:bg-[#e5e5e5] hover:dark:bg-[#212121] hover:rounded cursor-pointer pl-2"
+                className="flex flex-col md:flex-row mx-1 px-1 items-center my-2 py-2 hover:bg-[#e5e5e5] hover:dark:bg-[#212121] hover:rounded cursor-pointer pl-2"
                 onClick={() => {
                   loadingVideosByCategories(item.name);
                 }}
               >
-                <span className="mr-2">{item.icon}</span>
+                <span className="md:mr-2">{item.icon}</span>
                 <span>{item.name}</span>
               </li>
             );
@@ -58,12 +58,12 @@ const Sidebar = () => {
             return (
               <li
                 key={item.name}
-                className="flex mx-1 px-1 items-center my-2 py-2 hover:bg-[#e5e5e5] hover:dark:bg-[#212121] hover:rounded cursor-pointer pl-2"
+                className="flex flex-col md:flex-row mx-1 px-1 items-center my-2 py-2 hover:bg-[#e5e5e5] hover:dark:bg-[#212121] hover:rounded cursor-pointer pl-2"
                 onClick={() => {
                   loadingVideosByCategories(item.name);
                 }}
               >
-                <span className="mr-2">{item.icon}</span>
+                <span className="md:mr-2">{item.icon}</span>
                 <span>{item.name}</span>
               </li>
             );

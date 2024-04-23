@@ -10,10 +10,6 @@ const VideoPlayer = ({ id }: { id: any }) => {
   const channelId = useAppSelector((state) => state.youtube?.channelId);
   const dispatch = useAppDispatch();
 
-  const sideBarHidden = useAppSelector(
-    (state) => state?.youtube?.sideBarHidden
-  );
-
   useEffect(() => {
     //call thunk reducer to get the channelInfo
     dispatch(getChannelDetails(channelId));
@@ -24,19 +20,20 @@ const VideoPlayer = ({ id }: { id: any }) => {
     return <ErrorBox />;
   }
 
+  const playerHeightResponsive = window.innerWidth < 450 ? "200" : "472";
+
   return (
-    <div className="videoDetails w-8/12 px-4">
+    <div className="videoDetails w-12/12 md:w-8/12 px-4">
       <div className="videoPlayer pt-6 ">
         <iframe
-          width={`${!sideBarHidden ? "800" : "950"}`}
-          height="472"
+          height={playerHeightResponsive}
           src={`https://www.youtube.com/embed/${id}`}
           title="FunTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="rounded"
+          className={`rounded aspect-auto w-[100%]`}
         ></iframe>
       </div>
       <ChannelDetails />
