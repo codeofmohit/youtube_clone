@@ -1,6 +1,7 @@
 import { useAppSelector } from "../store/hooks";
 import Comment from "./Comment";
 import ErrorBox from "./ErrorBox";
+import { ifMobile } from "../constants/constant";
 
 const CommentThreads = () => {
   const commentThreads = useAppSelector((state) => state?.youtube?.comments);
@@ -8,8 +9,6 @@ const CommentThreads = () => {
   if (commentThreads.length === 0) {
     return <ErrorBox />;
   }
-
-  const ifMobile = window.innerWidth < 450 ? true : false;
 
   return (
     <>

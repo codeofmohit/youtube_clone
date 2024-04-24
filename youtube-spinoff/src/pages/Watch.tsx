@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getSuggestedVideos } from "../store/thunk-reducers/getSuggestedVideos";
 import VideoSuggestions from "../components/VideoSuggestions";
 import Footer from "../components/Footer";
+import { ifMobile } from "../constants/constant";
 
 const Watch = () => {
   const { id } = useParams();
@@ -29,8 +30,6 @@ const Watch = () => {
       dispatch(getSuggestedVideos(channelName));
     }
   }, [dispatch, channelName, suggestedVideos]);
-
-  const ifMobile = window.innerWidth < 450 ? true : false;
 
   return (
     <div className="watchPage">

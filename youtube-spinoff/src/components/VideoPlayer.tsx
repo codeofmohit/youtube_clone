@@ -6,6 +6,7 @@ import { getChannelDetails } from "../store/thunk-reducers/getChannelDetails";
 import { useEffect } from "react";
 import ErrorBox from "./ErrorBox";
 import VideoSuggestions from "./VideoSuggestions";
+import { ifMobile } from "../constants/constant";
 
 const VideoPlayer = ({ id }: { id: any }) => {
   const channelId = useAppSelector((state) => state.youtube?.channelId);
@@ -24,8 +25,6 @@ const VideoPlayer = ({ id }: { id: any }) => {
   if (!id) {
     return <ErrorBox />;
   }
-
-  const ifMobile = window.innerWidth < 450 ? true : false;
 
   const playerHeightResponsive = window.innerWidth < 450 ? "200" : "472";
 
